@@ -1,0 +1,31 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite thread-count="1" verbose="1" name="FabHotelsAndroidApplication" annotations="JDK" parallel="methods">
+    
+ <!--    <listeners>
+        <listener class-name="utils.ListenerTest" />
+    </listeners> -->
+    	
+	<test name="Native Android App Testing" allow-return-values="true">
+		<classes>
+			<class name="tests.Native_Fab_specs">
+				<methods>
+					<include name="countLocalitiesAndHotels" />
+					<include name="verifyContactNumber" />
+					<include name="verifyCoupon" />
+					<include name="SearchFormScreenCount" />
+
+				</methods>
+			</class>
+		</classes>
+
+	</test>
+	<test name="Web Based Testing" allow-return-values="true">
+		<classes>
+			<class name="tests.Web_Fab_specs">
+				<methods>
+					<include name="Web_Fab_specs" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

@@ -3,15 +3,16 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="tests.Web_Fab_specs">
+      <class name="tests.Native_Fab_specs">
         <methods>
           <include name="beforeClass"/>
+          <include name="init"/>
+          <include name="verifyCoupon"/>
           <include name="afterClass"/>
           <include name="tearDown"/>
-          <include name="validateDeepLink"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- tests.Web_Fab_specs -->
+      </class> <!-- tests.Native_Fab_specs -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

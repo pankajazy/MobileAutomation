@@ -1,8 +1,8 @@
 package tests;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,22 +19,24 @@ import pageObjects.SearchFormScreenObject;
 import pages.HomeScreen;
 import utils.BaseCrossPlatformDriver;
 import utils.GestureActions;
+import utils.Log;
+
 
 public class Native_Fab_specs extends BaseCrossPlatformDriver {
-
+ 
+  //Setting type of application
   @BeforeTest
   public void init()
   {
     System.setProperty("ApplicationType", "native");
   }
- 
-  @Test(enabled = true, timeOut = 300000)
+  
+  @Test(enabled = true,description ="List all the localities and number of hotels (count) in each locality.")
   public void countLocalitiesAndHotels() throws InterruptedException {
 
-    HomeScreen page_homeScreen = new HomeScreen();
     String endOfScroll = "//*[@class='android.view.View' and @index=3]";
     // Method that will navigate to provided cities
-    page_homeScreen.fabCities(variable.city_delhi);
+    HomeScreen.fabCities(variable.city_delhi);
     // It will store localities and number of hotels present
     HashMap<String, Integer> count = new HashMap<String, Integer>();
     // Clicking each tab and getting values
@@ -44,7 +46,7 @@ public class Native_Fab_specs extends BaseCrossPlatformDriver {
       MobileElement localityTab = driver.findElementByXPath(xpathForTab);
       String ss = localityTab.getText();
       localityTab.click();
-      System.out.println("At index " + i + " NAME " + ss);
+      Log.info("At index " + i + " NAME " + ss);
       localityTab = null;
       // This will return 1 if we reached at end of vertical scroll of list
       List<MobileElement> elements = driver.findElementsByXPath(endOfScroll);
@@ -58,85 +60,79 @@ public class Native_Fab_specs extends BaseCrossPlatformDriver {
         GestureActions.swipeVerticle(0.4);
       }
     }
-    System.out.println("List all the localities and number of hotels (count) in each locality "
+    Log.info("List all the localities and number of hotels (count) in each locality "
         + Arrays.asList(count));
 
   }
 
-  @Test(enabled = true, timeOut = 300000)
-  public void verifyContactNumber() {
-
-    HomeScreen page_homeScreen = new HomeScreen();
-    HomeScreenObject hso = new HomeScreenObject(driver);
+  @Test(enabled = true,description= "Verify contact number for customer care")
+  public void verifyContactNumber() throws IOException {
+    
     // Clicking on HomeScreen phone icon
-    page_homeScreen.viewCutomerCareNum();
+    HomeScreen.viewCutomerCareNum();
     // Getting the mobile number
-    String numDisplayed = hso.androidDialerField.getText();
-    System.out.println("Number Displayed: " + numDisplayed);
+    String numDisplayed = HomeScreenObject.androidDialerField.getText();
+    Log.info("Number Displayed: " + numDisplayed);
     // Asserting the number
     Assert.assertEquals(numDisplayed, variable.customer_care_num);
 
   }
 
-  @Test(enabled = true, timeOut = 300000)
+  @Test(enabled = true,description="when user clicks on ‘Pay At Hotel’ verify that coupon is removed for all the payment sections ")
   public void verifyCoupon() throws InterruptedException {
-
-    HomeScreen page_homeScreen = new HomeScreen();
-    PaymentScreenObject pso = new PaymentScreenObject(driver);
-    HomeScreenObject hso = new HomeScreenObject(driver);
-    SearchFormScreenObject sfso = new SearchFormScreenObject(driver);
+    
     // clicking on city
-    page_homeScreen.fabCities(variable.city_delhi);
+    HomeScreen.fabCities(variable.city_delhi);
     // Selecting first listed hotel
-    sfso.propertyName.click();
+    SearchFormScreenObject.propertyName.click();
     // Choosing given dates
-    hso.selectDatesButton.click();
-    hso.doneButton.click();
-    // clicking on booknow button
-    hso.bookNowButton.click();
-    GestureActions.swipeVerticle(0.5);
-    wait(hso.couponCodeField, 10);
+    HomeScreenObject.selectDatesButton.click();
+    HomeScreenObject.doneButton.click();
+    // clicking on book now button
+    HomeScreenObject.bookNowButton.click();
+    GestureActions.swipeVerticle(0.6);
+    GestureActions.swipeVerticle(0.6);
+    wait(HomeScreenObject.couponCodeField, 10);
     // Applying coupon
-    hso.couponCodeField.sendKeys(variable.coupon_FABAPP25);
-    hso.applyButton.click();
+    HomeScreenObject.couponCodeField.sendKeys(variable.coupon_FABAPP25);
+    HomeScreenObject.applyButton.click();
     // Asserting that coupon is applied successfully
-    Assert.assertTrue(hso.continueButton.isDisplayed(), "Coupun is applied Successfully");
-    hso.continueButton.click();
+    Assert.assertTrue(HomeScreenObject.continueButton.isDisplayed(), "Coupun is applied Successfully");
+    HomeScreenObject.continueButton.click();
     GestureActions.swipeVerticle(0.6);
     // Filling Mandatory details
-    hso.fullName.sendKeys(variable.sample_Name);
-    hso.emailId.sendKeys(variable.sample_Email);
-    hso.mobileNum.sendKeys(variable.sample_mobile);
+    HomeScreenObject.fullName.sendKeys(variable.sample_Name);
+    HomeScreenObject.emailId.sendKeys(variable.sample_Email);
+    HomeScreenObject.mobileNum.sendKeys(variable.sample_mobile);
     driver.pressKeyCode(AndroidKeyCode.BACK);
     // pressing enter
-    pso.proceedToPayButton.click();
+    PaymentScreenObject.proceedToPayButton.click();
     GestureActions.swipeVerticle(0.7);
-    wait(pso.payNowButton, 10);
+    wait(PaymentScreenObject.payNowButton, 10);
     // Getting the discounted cost
-    String discountedPriceText = pso.payNowButton.getText();
+    String discountedPriceText = PaymentScreenObject.payNowButton.getText();
     // Getting original price
-    String originalPriceText = pso.payAtHotelButton.getText();
+    String originalPriceText = PaymentScreenObject.payAtHotelButton.getText();
     int discountedPrice = Integer.parseInt(discountedPriceText.replaceAll("[\\D]", ""));
     int originalPrice = Integer.parseInt(originalPriceText.replaceAll("[\\D]", ""));
     // Printing discounted money
-    System.out.println("Original Cost: " + originalPrice + "Discounted amount: "+ (originalPrice - discountedPrice));
-    pso.payAtHotelButton.click();
-    hso.android_Deny.click();
-    pso.cancelOypDialog.click();
+    Log.info("Original Cost: " + originalPrice + "Discounted amount: "+ (originalPrice - discountedPrice));
+    PaymentScreenObject.payAtHotelButton.click();
+    HomeScreenObject.android_Deny.click();
+    PaymentScreenObject.cancelOypDialog.click();
 
   }
 
-  @Test(enabled = true,timeOut = 300000)
+  @Test(enabled = true,description="Location and hotel Counts on SearchFormScreen")
   public void SearchFormScreenCount() throws InterruptedException {
+    
     Map<String, Integer> placesAndCount = new HashMap<String, Integer>();
     LinkedHashSet<String> locality_count = new LinkedHashSet<String>();
     List<MobileElement> locations;
-    HomeScreen page_homeScreen = new HomeScreen();
-    SearchFormScreenObject sfso = new SearchFormScreenObject(driver);
-    page_homeScreen.homePage();
+    HomeScreen.homePage();
     // Clicking on home screen search tool bar
-    sfso.homeSearchToolbar.click();
-    Thread.sleep(3000);
+    SearchFormScreenObject.homeSearchToolbar.click();
+    Thread.sleep(4000);
     // Scrolling till the end of city have reached
     while (!locality_count.contains("Visakhapatnam")) {
       locations = driver.findElementsById("com.fabhotels.guests:id/tvSearchItemCity");
@@ -161,11 +157,12 @@ public class Native_Fab_specs extends BaseCrossPlatformDriver {
       }
       GestureActions.swipeVerticle(0.7);
     }
-    System.out.println("List of all the localities and number of hotels (count) in each locality :");
+    Log.info("List of all the localities and number of hotels (count) in each locality :");
     for (Map.Entry<String, Integer> entry : placesAndCount.entrySet())
     {
-      System.out.println("Location = " + entry.getKey() + ", number of hotels present = " + entry.getValue());
+      Log.info("Location = " + entry.getKey() + ", number of hotels present = " + entry.getValue());
     }
   }
+ 
 
 }

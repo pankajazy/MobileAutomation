@@ -5,16 +5,14 @@ import utils.BaseCrossPlatformDriver;
 
 public class HomeScreen extends BaseCrossPlatformDriver {
 
-  HomeScreenObject fh = new HomeScreenObject(driver);
-
-  public void homePage() {
+  public static void homePage() {
 
     skip();
-    fh.android_Deny.click();
-    fh.homePageTitle.isDisplayed();
+    HomeScreenObject.android_Deny.click();
+    HomeScreenObject.homePageTitle.isDisplayed();
   }
 
-  public void fabCities(String cityName) {
+  public static void fabCities(String cityName) {
     homePage();
     // waiting for city to be populated
     wait(place(cityName), 10);
@@ -22,11 +20,11 @@ public class HomeScreen extends BaseCrossPlatformDriver {
 
   }
 
-  public void viewCutomerCareNum() {
+  public static void viewCutomerCareNum() {
     homePage();
-    fh.phoneIcon.click();
+    HomeScreenObject.phoneIcon.click();
     // waiting for dialer
-    wait(fh.androidDialButton, 10);
+    wait(HomeScreenObject.androidDialButton, 10);
   }
 
 }

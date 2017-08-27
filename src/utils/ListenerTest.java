@@ -1,46 +1,71 @@
 package utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 
-public class ListenerTest {
+import com.google.common.io.Files;
 
-  public void onFinish(ITestContext Result)                   
-  {       
-                      
-  }       
+public class ListenerTest extends BaseCrossPlatformDriver implements ITestListener {
 
-  public void onStart(ITestContext Result)                    
-  {       
-    System.out.println("About to begin executing test " + Result.getName());             
-  }       
 
-  public void onTestFailedButWithinSuccessPercentage(ITestResult Result)                  
-  {       
-          
-  }       
+  public void onTestStart(ITestResult result) {
+    //Displaying Start of Test 
+    Log.startTestCase(result.getMethod().getMethodName());
+    
+  }
 
-  // When Test case get failed, this method is called.        
-  public void onTestFailure(ITestResult Result)                   
-  {       
-  System.out.println("The name of the testcase failed is :"+Result.getName());                    
-  }       
+  public void onTestSuccess(ITestResult result) {
+    Log.endTestCase(result.getMethod().getMethodName());
+  }
 
-  // When Test case get Skipped, this method is called.       
-  public void onTestSkipped(ITestResult Result)                   
-  {       
-  System.out.println("The name of the testcase Skipped is :"+Result.getName());                   
-  }       
+  public void onTestFailure(ITestResult result) {
+    if (!result.isSuccess()) {
+      Log.failed();
+      String userDirector = System.getProperty("user.dir");
+      String customeLocation = "//screenshots//";
+      String failureImageFileName = userDirector + customeLocation+result.getMethod().getMethodName()+"-"+new SimpleDateFormat("MM-dd-yyyy_HH-ss").format(new GregorianCalendar().getTime()) + ".png";
+      File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+      try {
 
-  // When Test case get Started, this method is called.       
-  public void onTestStart(ITestResult Result)                 
-  {       
-  System.out.println(Result.getName()+" test case started");                  
-  }       
+        Files.copy(scrFile, new File(failureImageFileName));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      // String userDirector = System.getProperty("user.dir") + "/";
+      Reporter.log("<a href=\"" + failureImageFileName + "\"><img src=\"file:///"
+          + failureImageFileName + "\" alt=\"\"" + "height='100' width='100'/> " + "<br />");
+      // Reporter.log("<a href=\""+ failureImageFileName + "\">");
+      Reporter.setCurrentTestResult(null);
+      Reporter.log(result.getName() + "--Test method failed\n");
 
-  // When Test case get passed, this method is called.        
-  public void onTestSuccess(ITestResult Result)                   
-  {       
-  System.out.println("The name of the testcase passed is :"+Result.getName());                    
-  }       
+    }
+
+  }
+
+  public void onTestSkipped(ITestResult result) {
+
+  }
+
+  public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+
+  }
+
+  public void onFinish(ITestContext arg0) {
+
+
+  }
+
+  public void onStart(ITestContext arg0) {
+
+  }
+
 }

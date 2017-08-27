@@ -18,24 +18,38 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
-import pageObjects.HomeScreenObject;
-import pageObjects.SearchFormScreenObject;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import pageObjects.VerifyScreenObject;
-import pages.HomeScreen;
 
-//Note: Maximum timeout is set to 5 min using timeout property of test annotation.
-
+/*
+ * Note: Maximum timeout is set to 5 min mentioned in TestNg.xml. Test method time out (e.g @Test (
+ * timeOut = 500 )) override the suite time out.
+ */
 public class BaseCrossPlatformDriver {
 
   public static AndroidDriver<MobileElement> driver;
   String appiumServiceUrl;
+  ListenerTest listner;
   private static AppiumDriverLocalService service;
+  private static AppiumServiceBuilder builder;
 
   @BeforeTest(enabled = true)
   public void beforeClass() {
     System.out.println("Starting Server");
-    service = AppiumDriverLocalService.buildDefaultService();
+    String customeLocation = "./Appiumlogs/serverlog.log";
+    builder = new AppiumServiceBuilder();
+    builder.withIPAddress("127.0.0.1");
+    builder.usingPort(4723);
+    builder.withLogFile(new File(customeLocation));
+    builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
+    //for all details use default else error
+    builder.withArgument(GeneralServerFlag.LOG_LEVEL, "default");
+    // Start the server with the builder
+    service = AppiumDriverLocalService.buildService(builder);
     service.start();
+    // String log4JConfigPath="log4J.properties";
+    // PropertyConfigurator.configure(log4JConfigPath);
     appiumServiceUrl = service.getUrl().toString();
     if (service == null || !service.isRunning()) {
       throw new AppiumServerHasNotBeenStartedLocallyException(
@@ -44,7 +58,7 @@ public class BaseCrossPlatformDriver {
 
   }
 
-  @AfterTest(enabled = false)
+  @AfterTest()
   public void afterClass() {
     if (service != null) {
       service.stop();
@@ -54,11 +68,10 @@ public class BaseCrossPlatformDriver {
 
   @BeforeMethod
   public void setUp() throws Exception {
-    System.out.println("Starting: ");
     if (System.getProperty("ApplicationType").equalsIgnoreCase("web")) {
       System.out.println("Launching web browser");
       androidBrowser();
-    } else if(System.getProperty("ApplicationType").equalsIgnoreCase("native")){
+    } else if (System.getProperty("ApplicationType").equalsIgnoreCase("native")) {
       System.out.println("Launching Native App");
       androidCaps();
     }
@@ -74,7 +87,7 @@ public class BaseCrossPlatformDriver {
   private void androidBrowser() throws IOException {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("browserName", "chrome");
-    capabilities.setCapability("deviceName", "KFUKGI85VWTG4D4H");
+    capabilities.setCapability("deviceName", "9fc26a437d14");
     capabilities.setCapability("platformName", "Android");
     capabilities.setCapability("platformVersion", "6.0");
     driver = new AndroidDriver<MobileElement>(new URL(appiumServiceUrl), capabilities);
@@ -99,13 +112,13 @@ public class BaseCrossPlatformDriver {
   }
 
   public static void skip() {
+    new VerifyScreenObject(driver);
     new WebDriverWait(driver, 30)
-        .until(ExpectedConditions.elementToBeClickable(new VerifyScreenObject(driver).skipButton))
-        .click();
+        .until(ExpectedConditions.elementToBeClickable(VerifyScreenObject.skipButton)).click();
 
   }
 
-  // Common text xpath for cities and localities
+  // generic xpath
   public static MobileElement place(String location) {
     MobileElement me = driver.findElementByXPath("//*[contains(@text,'" + location + "')]");
     return me;
@@ -113,18 +126,15 @@ public class BaseCrossPlatformDriver {
   }
 
   // Explicit wait
-  public static void wait(MobileElement me, long sec) {
+  public static MobileElement wait(MobileElement me, long sec) {
     WebDriverWait wd = new WebDriverWait(driver, sec);
-    wd.until(ExpectedConditions.visibilityOf(me));
-  }
+    wd.until(ExpectedConditions.elementToBeClickable(me));
+    return me;
 
-  // PageObjects
-  // public HomeScreenObject hso=new HomeScreenObject(driver);
-  // public SearchFormScreenObject pso=new SearchFormScreenObject(driver);
+  }
 
   // Variables
   public SharedVariables variable = new SharedVariables();
 
-  // Pages functions
 
 }

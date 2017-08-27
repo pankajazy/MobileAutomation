@@ -12,15 +12,15 @@ public class VerifyScreenObject {
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_skip")
   @iOSFindBy(id = "")
-  public MobileElement skipButton;
+  public static MobileElement skipButton;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/etMobileNumber")
   @iOSFindBy(id = "")
-  public MobileElement mobileNumber;
+  public static MobileElement mobileNumber;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/tvCountryname")
   @iOSFindBy(id = "")
-  public MobileElement countryName;
+  public static MobileElement countryName;
 
   public VerifyScreenObject(AndroidDriver<MobileElement> drivers) {
     PageFactory.initElements(new AppiumFieldDecorator(drivers), this);

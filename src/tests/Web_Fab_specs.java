@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.MobileElement;
 import utils.BaseCrossPlatformDriver;
+import utils.Log;
 
 public class Web_Fab_specs extends BaseCrossPlatformDriver {
   @BeforeTest
@@ -17,10 +18,10 @@ public class Web_Fab_specs extends BaseCrossPlatformDriver {
     System.setProperty("ApplicationType", "web");
   }
 
-  @Test(timeOut=300000)
+  @Test()
   public void validateDeepLink() throws InterruptedException {
     driver.get(variable.urlCityDelhi);
-    System.out.println("Title is: " + driver.getTitle());
+    Log.info("Title is: " + driver.getTitle());
     Thread.sleep(3000);
     String localityName = driver.findElementByClassName("listing__current-loc-text").getText();
     Assert.assertEquals(variable.city_delhi, localityName);

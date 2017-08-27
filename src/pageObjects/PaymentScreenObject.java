@@ -12,38 +12,38 @@ public class PaymentScreenObject {
 
   @AndroidFindBy(xpath = "//*[@text='Credit Card']")
   @iOSFindBy(accessibility = "")
-  public MobileElement creditCard;
+  public static MobileElement creditCard;
 
   @AndroidFindBy(xpath = "//*[@text='Debit Card']")
   @iOSFindBy(accessibility = "")
-  public MobileElement debitCard;
+  public static MobileElement debitCard;
 
   @AndroidFindBy(xpath = "//*[@text='Netbanking']")
   @iOSFindBy(accessibility = "")
-  public MobileElement netBanking;
+  public static MobileElement netBanking;
 
   @AndroidFindBy(xpath = "//*[@text='Wallets']")
   @iOSFindBy(accessibility = "")
-  public MobileElement wallets;
+  public static MobileElement wallets;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/btnPay")
   @iOSFindBy(accessibility = "")
-  public MobileElement payNowButton;
+  public static MobileElement payNowButton;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/btnPayAtHotel")
   @iOSFindBy(accessibility = "")
-  public MobileElement payAtHotelButton;
+  public static MobileElement payAtHotelButton;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/ivClose")
   @iOSFindBy(accessibility = "")
-  public MobileElement cancelOypDialog;
+  public static MobileElement cancelOypDialog;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_pay")
   @iOSFindBy(accessibility = "")
-  public MobileElement proceedToPayButton;
+  public static MobileElement proceedToPayButton;
 
-  public PaymentScreenObject(AndroidDriver<MobileElement> driver) {
-    PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+  public PaymentScreenObject(AndroidDriver<MobileElement> drivers) {
+    PageFactory.initElements(new AppiumFieldDecorator(drivers), this);
   }
 
 }

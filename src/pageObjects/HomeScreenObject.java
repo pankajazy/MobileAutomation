@@ -12,68 +12,69 @@ public class HomeScreenObject {
 
   @AndroidFindBy(id = "com.android.packageinstaller:id/permission_deny_button")
   @iOSFindBy(accessibility = "")
-  public MobileElement android_Deny;
+  public static MobileElement android_Deny;
+  
 
   @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
   @iOSFindBy(accessibility = "")
-  public MobileElement android_Allow;
+  public static MobileElement android_Allow;
 
   @AndroidFindBy(xpath = "//*[@text=\"India's Best Economy Hotels\"]")
   @iOSFindBy(accessibility = "")
-  public MobileElement homePageTitle;
+  public static MobileElement homePageTitle;
 
   @AndroidFindBy(className = "android.widget.ImageButton")
   @iOSFindBy(accessibility = "")
-  public MobileElement phoneIcon;
+  public static MobileElement phoneIcon;
 
   @AndroidFindBy(accessibility = "Dial")
   @iOSFindBy(accessibility = "")
-  public MobileElement androidDialButton;
+  public static MobileElement androidDialButton;
 
   @AndroidFindBy(id = "com.android.contacts:id/digits")
   @iOSFindBy(accessibility = "")
-  public MobileElement androidDialerField;
+  public static MobileElement androidDialerField;
 
   // Select dates button while booking
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_bookNow")
   @iOSFindBy(accessibility = "")
-  public MobileElement selectDatesButton;
+  public static MobileElement selectDatesButton;
 
   // Done button of calendar
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_done")
   @iOSFindBy(accessibility = "")
-  public MobileElement doneButton;
+  public static MobileElement doneButton;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_bookNow")
   @iOSFindBy(accessibility = "")
-  public MobileElement bookNowButton;
+  public static MobileElement bookNowButton;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/et_coupon_code")
   @iOSFindBy(accessibility = "")
-  public MobileElement couponCodeField;
+  public static MobileElement couponCodeField;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_apply")
   @iOSFindBy(accessibility = "")
-  public MobileElement applyButton;
+  public static MobileElement applyButton;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_continue")
   @iOSFindBy(accessibility = "")
-  public MobileElement continueButton;
+  public static MobileElement continueButton;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/et_full_name")
   @iOSFindBy(accessibility = "")
-  public MobileElement fullName;
+  public static MobileElement fullName;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/et_email")
   @iOSFindBy(accessibility = "")
-  public MobileElement emailId;
+  public static MobileElement emailId;
 
   @AndroidFindBy(id = "com.fabhotels.guests:id/et_mobile_number")
   @iOSFindBy(accessibility = "")
-  public MobileElement mobileNum;
+  public static MobileElement mobileNum;
 
-  public HomeScreenObject(AndroidDriver<MobileElement> driver) {
-    PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+  public HomeScreenObject(AndroidDriver<MobileElement> drivers) {
+    PageFactory.initElements(new AppiumFieldDecorator(drivers), this);
   }
 
 }

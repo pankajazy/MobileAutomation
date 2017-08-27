@@ -1,0 +1,48 @@
+2017-08-27 23:36:07,618 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:36:07,623 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:36:07,623 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:36:11,465 INFO  [Log] test case : countLocalitiesAndHotels got failed 
+2017-08-27 23:36:39,730 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:36:39,732 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 verifyContactNumber       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:36:39,733 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:36:43,447 INFO  [Log] test case : verifyContactNumber got failed 
+2017-08-27 23:38:30,433 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:38:30,438 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:38:30,438 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:38:34,052 INFO  [Log] test case : countLocalitiesAndHotels got failed 
+2017-08-27 23:39:52,221 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:39:52,225 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:39:52,225 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:39:55,886 INFO  [Log] test case : countLocalitiesAndHotels got failed 
+2017-08-27 23:45:23,981 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:45:23,986 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:45:23,987 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:45:27,521 INFO  [Log] test case : countLocalitiesAndHotels got failed 
+2017-08-27 23:46:41,248 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:46:41,253 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:46:41,253 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:46:44,911 INFO  [Log] test case : countLocalitiesAndHotels got failed 
+2017-08-27 23:48:30,032 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:48:30,039 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:48:30,040 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:48:34,322 INFO  [Log] test case : countLocalitiesAndHotels got failed 
+2017-08-27 23:49:02,058 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:49:02,059 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 verifyContactNumber       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:49:02,060 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:49:06,110 INFO  [Log] test case : verifyContactNumber got failed 
+2017-08-27 23:49:34,573 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:49:34,574 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 verifyCoupon       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:49:34,575 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:49:38,930 INFO  [Log] test case : verifyCoupon got failed 
+2017-08-27 23:50:57,476 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:50:57,482 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:50:57,482 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:51:02,001 INFO  [Log] test case : countLocalitiesAndHotels got failed 
+2017-08-27 23:51:29,090 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:51:29,091 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 verifyContactNumber       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-27 23:51:29,092 INFO  [Log] **************************************************************************************** 
+2017-08-27 23:51:34,372 INFO  [Log] test case : verifyContactNumber got failed 
+2017-08-28 00:24:42,286 INFO  [Log] **************************************************************************************** 
+2017-08-28 00:24:42,315 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX                 countLocalitiesAndHotels       XXXXXXXXXXXXXXXXXXXXXXX  
+2017-08-28 00:24:42,315 INFO  [Log] **************************************************************************************** 
+2017-08-28 00:24:45,737 INFO  [Log] test case : countLocalitiesAndHotels got failed 

@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="Libs/java-client-5.0.0-BETA9.jar"/>
 	<classpathentry kind="lib" path="Libs/selenium-server-standalone-3.4.0.jar"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="lib" path="Libs/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -5,9 +5,9 @@
     <classes>
       <class name="tests.Native_Fab_specs">
         <methods>
+          <include name="verifyContactNumber"/>
           <include name="beforeClass"/>
           <include name="init"/>
-          <include name="verifyCoupon"/>
           <include name="afterClass"/>
           <include name="tearDown"/>
           <include name="setUp"/>

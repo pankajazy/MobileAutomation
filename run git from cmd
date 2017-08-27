@@ -1,0 +1,15 @@
+run git cmd
+
+run cd ~
+
+run cd to your project
+
+run git clone (paste address of your repository)
+
+run git status
+
+run git add .
+
+run git commit -m "intial commit"
+
+run git push origin master

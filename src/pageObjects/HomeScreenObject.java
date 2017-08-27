@@ -7,14 +7,14 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import utils.BaseCrossPlatformDriver;
 
-public class HomeScreenObject {
-
+public class HomeScreenObject extends BaseCrossPlatformDriver{
+  
   @AndroidFindBy(id = "com.android.packageinstaller:id/permission_deny_button")
   @iOSFindBy(accessibility = "")
   public static MobileElement android_Deny;
-  
-
+ 
   @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
   @iOSFindBy(accessibility = "")
   public static MobileElement android_Allow;
@@ -72,7 +72,7 @@ public class HomeScreenObject {
   @AndroidFindBy(id = "com.fabhotels.guests:id/et_mobile_number")
   @iOSFindBy(accessibility = "")
   public static MobileElement mobileNum;
-
+  
   public HomeScreenObject(AndroidDriver<MobileElement> drivers) {
     PageFactory.initElements(new AppiumFieldDecorator(drivers), this);
   }

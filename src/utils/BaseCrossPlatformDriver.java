@@ -20,6 +20,9 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+import pageObjects.HomeScreenObject;
+import pageObjects.PaymentScreenObject;
+import pageObjects.SearchFormScreenObject;
 import pageObjects.VerifyScreenObject;
 
 /*
@@ -44,7 +47,7 @@ public class BaseCrossPlatformDriver {
     builder.withLogFile(new File(customeLocation));
     builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
     //for all details use default else error
-    builder.withArgument(GeneralServerFlag.LOG_LEVEL, "default");
+    builder.withArgument(GeneralServerFlag.LOG_LEVEL, "error");
     // Start the server with the builder
     service = AppiumDriverLocalService.buildService(builder);
     service.start();
@@ -92,6 +95,7 @@ public class BaseCrossPlatformDriver {
     capabilities.setCapability("platformVersion", "6.0");
     driver = new AndroidDriver<MobileElement>(new URL(appiumServiceUrl), capabilities);
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    iniPageObject();
   }
 
   private void androidCaps() throws IOException {
@@ -109,6 +113,7 @@ public class BaseCrossPlatformDriver {
     capabilities.setCapability("appActivity", "app.fabhotels.MainActivity");
     driver = new AndroidDriver<MobileElement>(new URL(appiumServiceUrl), capabilities);
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    iniPageObject();
   }
 
   public static void skip() {
@@ -136,5 +141,13 @@ public class BaseCrossPlatformDriver {
   // Variables
   public SharedVariables variable = new SharedVariables();
 
+  // Page Objects initialization
+  public static void iniPageObject()
+  {
+    new HomeScreenObject(driver);
+    new PaymentScreenObject(driver);
+    new SearchFormScreenObject(driver);
+    new VerifyScreenObject(driver);
+  }
 
 }

@@ -33,20 +33,21 @@ public class Native_Fab_specs extends BaseCrossPlatformDriver {
   
   @Test(enabled = true,description ="List all the localities and number of hotels (count) in each locality.")
   public void countLocalitiesAndHotels() throws InterruptedException {
-
+    
     String endOfScroll = "//*[@class='android.view.View' and @index=3]";
     // Method that will navigate to provided cities
     HomeScreen.fabCities(variable.city_delhi);
-    // It will store localities and number of hotels present
-    HashMap<String, Integer> count = new HashMap<String, Integer>();
+    HashMap<String, Integer> count = null;
     // Clicking each tab and getting values
     for (int i = 1; i < 6; i++) {
+      // It will store localities and number of hotels present
+      count= new HashMap<String, Integer>();
       String xpathForTab = "//*[@class='android.support.v7.app.a$c' and @index=" + i+ "]//*[@class='android.widget.TextView' and @index=0]";
       wait(driver.findElementByXPath(xpathForTab), 10);
       MobileElement localityTab = driver.findElementByXPath(xpathForTab);
       String ss = localityTab.getText();
       localityTab.click();
-      Log.info("At index " + i + " NAME " + ss);
+      Log.info("Counting Hotels under : "+ ss);
       localityTab = null;
       // This will return 1 if we reached at end of vertical scroll of list
       List<MobileElement> elements = driver.findElementsByXPath(endOfScroll);
@@ -59,6 +60,7 @@ public class Native_Fab_specs extends BaseCrossPlatformDriver {
         elements = driver.findElementsByXPath(endOfScroll);
         GestureActions.swipeVerticle(0.4);
       }
+      count.put(ss, property_count.size());
     }
     Log.info("List all the localities and number of hotels (count) in each locality "
         + Arrays.asList(count));

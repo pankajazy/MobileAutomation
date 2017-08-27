@@ -7,9 +7,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import utils.BaseCrossPlatformDriver;
 
-public class VerifyScreenObject {
-
+public class VerifyScreenObject extends BaseCrossPlatformDriver{
+  
   @AndroidFindBy(id = "com.fabhotels.guests:id/btn_skip")
   @iOSFindBy(id = "")
   public static MobileElement skipButton;

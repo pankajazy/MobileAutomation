@@ -6,7 +6,7 @@ import utils.BaseCrossPlatformDriver;
 public class HomeScreen extends BaseCrossPlatformDriver {
 
   public static void homePage() {
-
+    
     skip();
     HomeScreenObject.android_Deny.click();
     HomeScreenObject.homePageTitle.isDisplayed();
